@@ -8,8 +8,8 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage
 # Set OpenAI API details
 openai.api_type = "azure"
 openai.api_version = "2023-05-15"
-openai.api_key = os.getenv("4e4cc3735b86473da0c4fa5106883184")
-openai.api_base = os.getenv("https://joyicelandcatlinegpt.openai.azure.com/")
+openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_base = os.getenv("OPENAI_API_URL")
 
 app = Flask(__name__)
 
@@ -48,8 +48,8 @@ def aoai_chat_model(chat):
     return response_chat['choices'][0]['message']['content'].strip()
 
 # Initialize Line API with access token and channel secret
-line_bot_api = LineBotApi(os.getenv('mN3NBb/UdcxACnt9c7Vm3XVbONZkcvRwjJtMPbIvztyTUKcyX3JhNUJ7G2zTtxORoLDOu91fNo42zYKtt0MGawyhSWpuDBUzJrttUaWUTV7T4aF5q82FeVCSMM4FtAbOOuPb/3sCs8DVwR5dA23TGQdB04t89/1O/w1cDnyilFU='))
-handler1 = WebhookHandler(os.getenv('c708197e237b43eebb849cb2adbd1c72'))
+line_bot_api = LineBotApi(os.getenv('LINE_CHANNEL_ACCESS_TOKEN'))
+handler1 = WebhookHandler(os.getenv('LINE_CHANNEL_SECRET'))
 
 # This route serves as a health check or landing page for the web app.
 @app.route("/")
